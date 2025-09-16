@@ -7,8 +7,8 @@
 Для начала, клонируйте репозиторий на ваш локальный компьютер:
 
 ```bash
-git clone https://github.com/gutshotexist/cvcasetbanksirius # <--- Замените на URL вашего репозитория
-cd cvcasetbanksirius # <--- Замените на имя папки вашего репозитория
+git clone https://github.com/gutshotexist/cvcasetbanksirius 
+cd cvcasetbanksirius 
 ```
 
 ## 🚀 Быстрый старт: Запуск через Docker
