@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y libgl1
 # --- 5. Install Dependencies ---
 # We install the Python packages specified in the requirements file.
 # --no-cache-dir reduces the image size.
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt --no-deps torch torchvision
 RUN pip install --no-cache-dir -r requirements.txt
 
 # --- 6. Copy Application Code and Model ---
