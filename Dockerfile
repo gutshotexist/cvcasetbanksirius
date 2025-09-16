@@ -13,15 +13,15 @@ WORKDIR /app
 COPY requirements.txt .
 
 # --- 4. Install System Dependencies ---
-# We need to install libgl1 for OpenCV to work correctly.
-RUN apt-get update && apt-get install -y libgl1
+# We need to install these for OpenCV to work correctly, and we clean up the apt cache to reduce image size.
+RUN apt-get update && apt-get install -y libgl1 libglib2.0-0 --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
 # --- 5. Install Dependencies ---
-# We install the Python packages specified in the requirements file.
+# We install the Python packages specified in the requirements file in a single layer.
 # --no-cache-dir reduces the image size.
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt --no-deps torch torchvision
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # --- 6. Copy Application Code and Model ---
 # Copy the rest of the application's code into the container.
